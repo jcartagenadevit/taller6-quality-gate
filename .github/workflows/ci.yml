@@ -1,0 +1,23 @@
+name: ReactTesting
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Configurar nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar dependencia
+        run: npm ci
+      - name: Compilar React
+        run: npm run build
+        
+      
+  
