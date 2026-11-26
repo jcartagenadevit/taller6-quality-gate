@@ -25,7 +25,7 @@ export default function App() {
       setTasks(Array.isArray(parsed.tasks) ? parsed.tasks : []);
     } catch (err) {
       setError(err.message || 'Error inesperado');
-    } finally { setLoading(false); }
+    } finally { setLoading(fals); }
   
 
   return <div className="page">
