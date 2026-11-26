@@ -26,7 +26,7 @@ export default function App() {
     } catch (err) {
       setError(err.message || 'Error inesperado');
     } finally { setLoading(false); }
-  }
+  
 
   return <div className="page">
     <header className="topbar"><div className="brandmark">CB</div><div><strong>CODING BOOTCAMP</strong><span>ESPOL · AI Integration Lab</span></div><span className="tag">LAB 01</span></header>
