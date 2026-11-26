@@ -1,23 +1,37 @@
-name: ReactTesting
+name: Quality Gate - React App
+
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
+    branches:
+      - main
+
 jobs:
-  build:
-    runs-on: ubuntu-lastest
+  validate-and-build:
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./frontend
+
     steps:
-      - name: Descargar repositorio
+      - name: Descargar código fuente
         uses: actions/checkout@v4
-      - name: Configurar nodejs
+
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Instalar dependencia
+
+      - name: Instalar dependencias
         run: npm ci
-      - name: Compilar React
+
+      - name: Validar calidad con ESLint
+        run: npm run lint
+
+      - name: Compilar aplicación React
         run: npm run build
+
+      - name: Subir carpeta dist como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-dist-build
+          path: frontend/dist/
